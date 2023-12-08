@@ -3,7 +3,7 @@ import { Medal } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { headingFont, textFont } from "@/shared/fonts";
+import { headingFont, textFont, AppRoutes } from "@/shared";
 
 import marketingTexts from "@/mocks/marketingTexts.json";
 
@@ -37,7 +37,7 @@ function MarketingPage() {
         {marketingTexts.description}
       </div>
       <Button className="mt-6" size="lg" asChild>
-        <Link href="/sign-up">{marketingTexts.buttonText}</Link>
+        <Link href={AppRoutes.SIGN_UP}>{marketingTexts.buttonText}</Link>
       </Button>
     </div>
   );
