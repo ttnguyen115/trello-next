@@ -45,7 +45,18 @@ function DashboardSidebar({ storageKey = "t-sidebar-state" }: SidebarProps) {
   if (!isLoadedOrg || !isLoadedOrgList || userMemberships.isLoading) {
     return (
       <>
-        <Skeleton />
+        <div className="flex items-center justify-between mb-2">
+          <Skeleton className="h-10 w-[50%]" />
+          <Skeleton className="h-10 w-10" />
+        </div>
+        <div className="space-y-2">
+          {/* @ts-ignore */}
+          <NavItem.Skeleton />
+          {/* @ts-ignore */}
+          <NavItem.Skeleton />
+          {/* @ts-ignore */}
+          <NavItem.Skeleton />
+        </div>
       </>
     );
   }
@@ -84,5 +95,17 @@ function DashboardSidebar({ storageKey = "t-sidebar-state" }: SidebarProps) {
     </>
   );
 }
+
+// @ts-ignore
+NavItem.Skeleton = function SkeletonNavItem() {
+  return (
+    <div className="flex items-center gap-x-2">
+      <div className="w-10 h-10 relative shrink-0">
+        <Skeleton className="h-full w-full absolute" />
+      </div>
+      <Skeleton className="h-10 w-full" />
+    </div>
+  );
+};
 
 export default DashboardSidebar;
