@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Check, Loader2 } from "lucide-react";
 
+import { FormErrors } from "@/components/form/formErrors";
 import { unsplash } from "@/lib/unsplash";
 import { cn } from "@/lib/utils";
 import { defaultImages } from "@/mocks/images";
@@ -37,7 +38,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
           console.error("Failed to get images from Unsplash");
         }
       } catch (e) {
-        console.log(e);
+        console.error(e);
         setImages(defaultImages);
       } finally {
         setIsLoading(false);
@@ -70,6 +71,15 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
               pending && "opacity-50 hover:opacity-50 cursor-auto",
             )}
           >
+            <input
+              type="radio"
+              id={id}
+              name={id}
+              value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
+              disabled={pending}
+              checked={selectedImageId === image.id}
+              className="hidden"
+            />
             <Image
               fill
               src={image.urls.thumb}
@@ -91,6 +101,7 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
           </div>
         ))}
       </div>
+      <FormErrors id="image" errors={errors} />
     </div>
   );
 };

@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 
 interface FormErrorsProps {
   id: string;
-  errors?: Record<string, string[]> | undefined;
+  errors?: Record<string, string[] | undefined>;
 }
 
 export const FormErrors = ({ id, errors }: FormErrorsProps) => {
