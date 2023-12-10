@@ -9,7 +9,7 @@ import { State } from "@/actions/types";
 
 function Form() {
   const initialState = { message: null, errors: {} };
-  const [state, dispatch] = useFormState<State>(create, initialState);
+  const [state, dispatch] = useFormState(create, initialState);
 
   return (
     <form action={dispatch}>

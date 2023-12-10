@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormState } from "react-dom";
+import { useFormStatus } from "react-dom";
 
 import { Input } from "@/components/ui/input";
 
@@ -11,7 +11,7 @@ interface FormInputProps {
 }
 
 function FormInput({ errors }: FormInputProps) {
-  const { pending } = useFormState();
+  const { pending } = useFormStatus();
 
   return (
     <div>
