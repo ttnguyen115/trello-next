@@ -10,20 +10,39 @@ import { CreateBoard } from "@/actions/create-board/schema";
 import { type InputType, type ReturnType } from "@/actions/create-board/types";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
-  const { userId } = auth();
-  if (!userId) {
+  const { userId, orgId } = auth();
+  if (!userId || !orgId) {
     return {
       error: "Unauthorized",
     };
   }
 
-  const { title } = data;
-  let board;
+  const { title, image } = data;
+  const [imageID, imageThumbUrl, imageFullUrl, imageLinkHTML, imageUserName] =
+    image.split("|");
+  if (
+    !imageID ||
+    !imageThumbUrl ||
+    !imageFullUrl ||
+    !imageUserName ||
+    !imageLinkHTML
+  ) {
+    return {
+      error: "Missing fields. Failed to create board.",
+    };
+  }
 
+  let board;
   try {
     board = await db.board.create({
       data: {
         title,
+        orgId,
+        imageID,
+        imageThumbUrl,
+        imageFullUrl,
+        imageUserName,
+        imageLinkHTML,
       },
     });
   } catch (error) {
@@ -32,7 +51,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  revalidatePath(`/organization/${board.id}`);
+  revalidatePath(`/board/${board.id}`);
   return { data: board };
 };
 
