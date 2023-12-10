@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 
 import { db } from "@/lib/db";
 import { createSafeAction } from "@/lib/createSafeAction";
+import { AppRoutes } from "@/shared";
 
 import { CreateBoard } from "@/actions/create-board/schema";
 import { type InputType, type ReturnType } from "@/actions/create-board/types";
@@ -51,7 +52,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     };
   }
 
-  revalidatePath(`/board/${board.id}`);
+  revalidatePath(`${AppRoutes.BOARD}/${board.id}`);
   return { data: board };
 };
 

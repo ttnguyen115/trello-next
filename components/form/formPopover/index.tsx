@@ -20,6 +20,7 @@ import { FormPicker } from "@/components/form/formPicker";
 
 import { useAction } from "@/hooks/useAction";
 import { createBoard } from "@/actions/create-board";
+import { AppRoutes } from "@/shared";
 
 interface FormPopoverProps {
   children: React.ReactNode;
@@ -40,7 +41,7 @@ export const FormPopover = ({
     onSuccess: (data) => {
       toast.success("Board created!");
       closeRef.current?.click();
-      router.push(`/board/${data.id}`);
+      router.push(`${AppRoutes.BOARD}/${data.id}`);
     },
     onError: (error) => toast.error(error),
   });
