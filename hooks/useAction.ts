@@ -29,7 +29,9 @@ export function useAction<TInput, TOutput>(
       try {
         const result = await action(input);
         if (!result) return;
-        if (result.fieldErrors) setFieldErrors(result.fieldErrors);
+        // If there are errors, add to the state field errors
+        // If not error, the state will be cleared
+        setFieldErrors(result.fieldErrors);
         if (result.error) {
           setError(result.error);
           options.onError?.(result.error);
