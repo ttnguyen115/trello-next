@@ -2,9 +2,9 @@
 
 import { createBoard } from "@/actions/create-board";
 
-import FormInput from "@/app/(platform)/(dashboard)/organization/[id]/form/input";
-import FormButton from "@/app/(platform)/(dashboard)/organization/[id]/form/button";
 import { useAction } from "@/hooks/useAction";
+import { FormInput } from "@/components/form/formInput";
+import { FormSubmit } from "@/components/form/formSubmit";
 
 function Form() {
   const { execute, fieldErrors } = useAction(createBoard, {
@@ -24,9 +24,9 @@ function Form() {
   return (
     <form action={onSubmit}>
       <div className="flex">
-        <FormInput errors={fieldErrors} />
+        <FormInput id="title" label="title" errors={fieldErrors} />
       </div>
-      <FormButton />
+      <FormSubmit>Submit</FormSubmit>
     </form>
   );
 }
