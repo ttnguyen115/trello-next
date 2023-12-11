@@ -14,9 +14,10 @@ import { updateList } from "@/actions/update-list";
 
 interface ListHeaderProps {
   data: List;
+  onAddCard: () => void;
 }
 
-function ListHeader({ data }: ListHeaderProps) {
+function ListHeader({ data, onAddCard }: ListHeaderProps) {
   const [title, setTitle] = React.useState(data.title);
   const [isEditing, setIsEditing] = React.useState(false);
 
@@ -97,7 +98,7 @@ function ListHeader({ data }: ListHeaderProps) {
           {title}
         </div>
       )}
-      <ListOptions data={data} onAddCard={() => {}} />
+      <ListOptions data={data} onAddCard={onAddCard} />
     </div>
   );
 }
