@@ -3,7 +3,7 @@
 import { Draggable } from "@hello-pangea/dnd";
 import { Card } from "@prisma/client";
 
-import { useCardModel } from "@/hooks/useCardModal";
+import { useCardModal } from "@/hooks/useCardModal";
 
 interface CardItemProps {
   data: Card;
@@ -11,7 +11,7 @@ interface CardItemProps {
 }
 
 function CardItem({ data, index }: CardItemProps) {
-  const cardModal = useCardModel();
+  const cardModal = useCardModal();
 
   const handleClickCardItem = () => cardModal.onOpen(data.id);
 

@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
-type CardModelStore = {
+type CardModalStore = {
   id?: string;
   isOpen: boolean;
   onOpen: (id: string) => void;
   onClose: () => void;
 };
 
-export const useCardModel = create<CardModelStore>((set) => ({
+export const useCardModal = create<CardModalStore>((set) => ({
   id: undefined,
   isOpen: false,
   onOpen: (id: string) => set({ isOpen: true, id }),

@@ -26,11 +26,9 @@ function Header({ data }: HeaderProps) {
 
   const { execute } = useAction(updateCard, {
     onSuccess: (data) => {
-      queryClient
-        .invalidateQueries({
-          queryKey: ["card", data.id],
-        })
-        .then((res) => console.log(res));
+      queryClient.invalidateQueries({
+        queryKey: ["card", data.id],
+      });
       toast.success(`Renamed to "${data.title}"`);
     },
     onError: (error) => {
