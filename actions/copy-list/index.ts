@@ -7,9 +7,8 @@ import { db } from "@/lib/db";
 import { createSafeAction } from "@/lib/createSafeAction";
 import { AppRoutes } from "@/shared";
 
-import { InputType, ReturnType } from "@/actions/delete-list/types";
+import { InputType, ReturnType } from "@/actions/copy-list/types";
 import { CopyList } from "@/actions/copy-list/schema";
-import { last } from "lodash";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
