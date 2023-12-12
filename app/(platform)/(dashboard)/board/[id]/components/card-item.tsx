@@ -3,12 +3,18 @@
 import { Draggable } from "@hello-pangea/dnd";
 import { Card } from "@prisma/client";
 
+import { useCardModel } from "@/hooks/useCardModal";
+
 interface CardItemProps {
   data: Card;
   index: number;
 }
 
 function CardItem({ data, index }: CardItemProps) {
+  const cardModal = useCardModel();
+
+  const handleClickCardItem = () => cardModal.onOpen(data.id);
+
   return (
     <Draggable draggableId={data.id} index={index}>
       {(provided) => (
@@ -17,6 +23,7 @@ function CardItem({ data, index }: CardItemProps) {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           role="button"
+          onClick={handleClickCardItem}
           className="truncate border-2 border-transparent hover:border-black py-2 px-3 text-sm bg-white rounded-md shadow-sm"
         >
           {data.title}
